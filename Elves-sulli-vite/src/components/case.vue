@@ -37,6 +37,20 @@ export default {
         return target
       }
     }
+    // 浅拷贝
+    const shallClone = (target) => {
+      if (typeof target === 'object' && target !== null) {
+        let cloneTarget = Array.isArray(target) ? [] : {}
+        for (let i in target) {
+          if (target.hasOwnProperty(i)) {
+            cloneTarget[i] = target[i]
+          }
+        }
+        return cloneTarget
+       } else {
+        return target
+      }
+    }
     // 数组降维 （递归）
     const arrReduction = (arr) => {
       return arrReductionRecursive(arr, [])
@@ -48,18 +62,17 @@ export default {
       return result
     }
 
+    // observer
+
     return {
       state,
       arrReduction,
+      shallClone,
       deepClone,
       addCase,
-      unique,
-      battle
+      unique
+      // battle
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
