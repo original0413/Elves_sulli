@@ -1,6 +1,5 @@
 /**
  * Title : index <br>
- * Company : 北京华宇元典信息服务有限公司 <br>
  * Description : - . -
  *
  *
@@ -45,4 +44,51 @@ const addTwoNumbers = function(l1, l2) {
     tail.next = new ListNode(carry);
   }
   return head;
+}
+
+const isFunction = function (val) {
+  return Object.prototype.toString.call(val) === '[object Function]'
+}
+
+
+const shallClone = (target) => {
+  if (typeof target === 'object' && target !== null) {
+    const cloneTarget = Array.isArray(target) ? [] : {}
+    for (let i in target) {
+      if (target.hasOwnProperty(i)) {
+        cloneTarget[i] = target[i]
+      }
+    }
+    return cloneTarget
+  } else {
+    return target
+  }
+}
+
+const deepClone = (target) => {
+  if (typeof target === 'object' && target !== null) {
+    const cloneTarget = Array.isArray(target) ? [] : {}
+    for (let i in target) {
+      if (target.hasOwnProperty(i)) {
+        cloneTarget[i] = deepClone(target[i])
+      }
+    }
+    return cloneTarget
+  } else {
+    return target
+  }
+}
+
+const quickSort = (arr) => {
+  const len = arr.length
+  if (arr.length <= 1) return arr
+  const left = []
+  const right = []
+  const middleIndex = Math.floor(len / 2)
+  const middleValue = arr[middleIndex]
+  for (let i = 0; i< len -1; i++) {
+    const target = arr[i]
+    target > middleValue ? right.push(target) : left.push(target)
+  }
+  return left.concat(middleValue, quickSort(right))
 }
